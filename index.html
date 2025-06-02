@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>미국주식 전략별 분석</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="server.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="main-wrap">
+    <h1>미국주식 전략별 기술적 분석</h1>
+
+    <div id="search-bar">
+      <input id="ticker" type="text" maxlength="10" placeholder="티커 입력 (예: MSFT)" />
+      <button id="analyze-btn" onclick="analyze()">분석하기</button>
+    </div>
+
+    <!-- 알림 메시지 영역 -->
+<div id="alert-box" style="
+    display:none;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 6px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    font-weight: bold;
+    ">
+</div>
+
+    <!-- 환영 메시지 + 애니메이션 스피너 -->
+    <div id="welcome-visual" class="welcome-visual">
+  <div class="ai-anim-chart">
+    <svg width="120" height="90" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="10,75 40,40 70,70 100,20" fill="none" stroke="#1e63de" stroke-width="5" class="anim-line"/>
+      <circle cx="10" cy="75" r="6" fill="#1e63de">
+        <animate attributeName="cy" values="75;72;75" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="40" cy="40" r="6" fill="#44ca6b">
+        <animate attributeName="cy" values="40;35;40" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="70" cy="70" r="6" fill="#ffe066">
+        <animate attributeName="cy" values="70;64;70" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="100" cy="20" r="6" fill="#fc5454">
+        <animate attributeName="cy" values="20;14;20" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <div class="ai-desc">
+      <div class="ai-title">
+        미국주식의 단기/스윙/장기 전략을<br />
+        기술적 지표로 자동 분석해드립니다.
+      </div>
+      <div class="ai-sub">
+        <span>티커를 입력 후 '분석하기' 버튼을 눌러주세요.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- 로딩 스피너 (분석 중 표시) -->
+    <div id="loading-spinner" style="display:none;">
+      <div class="spinner"></div>
+      데이터 조회 중입니다...
+    </div>
+
+
+    
+    <!-- 결과 카드 및 상세 -->
+    <div class="card-section" style="display:none;"></div>
+
+    <div class="details-section" style="display:none;">
+      <div id="score-label"></div>
+      <div id="score-meta"></div>
+      <div id="score-recommend"></div>
+      <div id="summary-comment"></div>
+    </div>
+  </div>
+</body>
+</html>
