@@ -971,3 +971,42 @@ window.onload = () => {
   if(document.querySelector('.card-section')) document.querySelector('.card-section').style.display = "none";
   if(document.querySelector('.details-section')) document.querySelector('.details-section').style.display = "none";
 };
+
+// 1. 화면 블러 처리 함수
+function blockPage() {
+  // 1) 내용 흐리게(blur) 처리
+  document.body.style.filter = "blur(7px)";
+  // 2) 블록 오버레이 표시
+  document.getElementById('block-overlay').style.display = "block";
+  // 4) 강제 리다이렉트 (원한다면 주석 해제)
+  location.href = "https://google.com"; // 또는 다른 사이트로 강제 이동
+}
+
+// 2. 우클릭/F12/소스보기 단축키 등 방지
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === "F12") e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i")) e.preventDefault();
+  if (e.ctrlKey && (e.key === "U" || e.key === "u")) e.preventDefault();
+});
+
+// 3. 개발자도구 열림 감지 후 바로 차단
+(function() {
+  let blocked = false;
+  const threshold = 160;
+  setInterval(function() {
+    if (
+      window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold
+    ) {
+      if (!blocked) {
+        location.href = "https://google.com"; // 또는 다른 사이트로 강제 이동
+        
+        blockPage();
+        blocked = true;
+      }
+    } else {
+      blocked = false;
+    }
+  }, 800);
+})();
