@@ -1,7 +1,7 @@
 // server.js (2024.06 최적화)
 // 단기/스윙/장기 전략별 종합점수 + 도넛차트 + 종합코멘트 + 지표별 코멘트 UI
 
-const API_KEY = 'i7SNR4PCjuSPhvZRkagJAQjLRaZUC2aF'; // D5S8TWZ8WXN9BCKS
+const API_KEY = 'cw4eHsRvjQ9QlMbNOjLZ5FAnrKXw2JHx'; // D5S8TWZ8WXN9BCKS
 const STRATEGY = {
   단기: ['MA5','MA10','RSI2','RSI14','StochasticFast','CCI','ATR','VWAP','OBV','MFI'],
   스윙: ['MA20','MA60','Bollinger','MACD','RSI14','StochasticSlow','ADX','OBV','MFI'],
